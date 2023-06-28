@@ -4,10 +4,8 @@ export default function MemeForm() {
     function handleSubmit(e) {
         e.preventDefault()
         const dataArray = memesData.data.memes;
-        const memeLength = dataArray.length;
-        const randomMemeNumber = Math.floor( Math.random() * memeLength);
-        const randomMeme = dataArray.indexOf(dataArray[randomMemeNumber])
-        console.log(dataArray[randomMeme])
+        const randomMemeNumber = Math.floor( Math.random() * dataArray.length);
+        console.log(dataArray[randomMemeNumber].url)
     }
 
     return(
