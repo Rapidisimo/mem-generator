@@ -41,8 +41,7 @@ header h2 {
   display: flex;
 }
 
-/* form elements */
-
+/* Form Elements */
 form {
   padding: 0 1.4rem;
   margin-top: 2rem;
@@ -71,4 +70,11 @@ input {
   height: 2.5rem;
   border-radius: 5px;
   background: linear-gradient(135deg, #711F8D 0%, #A818DA 100%);
+  cursor: pointer;
+ }
+ /* End Form Elements */
+
+ .meme-image {
+  margin: 0 auto;
+  padding-top: 1.2em;
  }
