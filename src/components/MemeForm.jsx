@@ -10,7 +10,7 @@ export default function MemeForm() {
         const randomMemeNumber = Math.floor( Math.random() * dataArray.length);
         imgUrl = dataArray[randomMemeNumber].url
         // console.log(imgUrl)
-        memeImageState( prevValue => prevValue = imgUrl)
+        memeImageState(imgUrl)
     }
 
     const [memeImage, memeImageState] = React.useState('')
