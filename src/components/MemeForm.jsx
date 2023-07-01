@@ -3,29 +3,44 @@ import memesData from "../memesData"
 
 export default function MemeForm() {
 
-    let imgUrl
+        /**
+     * Challenge: Update our state to save the meme-related
+     * data as an object called `meme`. It should have the
+     * following 3 properties:
+     * topText, bottomText, randomImage.
+     * 
+     * The 2 text states can default to empty strings for now,
+     * amd randomImage should default to "http://i.imgflip.com/1bij.jpg"
+     * 
+     * Next, create a new state variable called `allMemeImages`
+     * which will default to `memesData`, which we imported above
+     * 
+     * Lastly, update the `getMemeImage` function and the markup 
+     * to reflect our newly reformed state object and array in the
+     * correct way.
+     */
+
+    
+    
     function handleSubmit(e) {
         e.preventDefault()
         const dataArray = memesData.data.memes;
         const randomMemeNumber = Math.floor( Math.random() * dataArray.length);
-        imgUrl = dataArray[randomMemeNumber].url
-        // console.log(imgUrl)
-        memeImageState(imgUrl)
+        // const imgUrl = dataArray[randomMemeNumber].url
+        memeImageState(prevDate => {
+            return {
+                ...prevDate, randomImage: allMemeImages.data.memes[randomMemeNumber].url
+            }
+        })
     }
 
-    const [memeImage, memeImageState] = React.useState('')
+    const [memeImage, memeImageState] = React.useState({
+        toptext: '',
+        bottomText: '',
+        randomImage: 'http://i.imgflip.com/1bij.jpg'
+    })
 
-
-        /**
-     * Challenge: Save the random meme URL in state
-     * - Create new state called `memeImage` with an
-     *   empty string as default
-     * - When the getMemeImage function is called, update
-     *   the `memeImage` state to be the random chosen
-     *   image URL
-     * - Below the div.form, add an <img /> and set the
-     *   src to the new `memeImage` state you created
-     */
+    const [allMemeImages, allMemeImagesState] = React.useState(memesData)
 
     return(
         <>
@@ -36,7 +51,7 @@ export default function MemeForm() {
                 <input type="text" id="bottom-text" name="bottom-text" placeholder="Bottom Text"/>
                 <button>Get a New meme Image 🖼️</button>
             </form>
-            <img src={memeImage} alt="meme image" className="meme-image" />
+            <img src={memeImage.randomImage} alt="meme image" className="meme-image" />
         </>
     )
 }
