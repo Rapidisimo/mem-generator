@@ -24,9 +24,8 @@ export default function MemeForm() {
     
     function handleSubmit(e) {
         e.preventDefault()
-        const dataArray = memesData.data.memes;
+        const dataArray = allMemeImages.data.memes;
         const randomMemeNumber = Math.floor( Math.random() * dataArray.length);
-        // const imgUrl = dataArray[randomMemeNumber].url
         memeImageState(prevDate => {
             return {
                 ...prevDate, randomImage: allMemeImages.data.memes[randomMemeNumber].url
