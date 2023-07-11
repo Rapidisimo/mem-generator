@@ -74,7 +74,26 @@ input {
  }
  /* End Form Elements */
 
+ .generated-meme {
+  position: relative;
+ }
+
  .meme-image {
   margin: 0 auto;
   padding-top: 1.2em;
+ }
+
+ .top-text {
+  position: absolute;
+  top: 0;
+  font-size: 3rem;
+  text-align: center;
+  /* padding: 2rem; */
+ }
+
+ .bottom-text {
+  position: absolute;
+  bottom: 0;
+  font-size: 3rem;
+  text-align: center;
  }
