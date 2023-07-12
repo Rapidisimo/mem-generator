@@ -1,24 +1,32 @@
 import React from "react";
-import memesData from "../memesData"
+
 
 export default function MemeForm() {
 
     /**
      * Challenge: 
-     * ✅ 1. Set up the text inputs to save to
-     *    the `topText` and `bottomText` state variables.
-     * 2. Replace the hard-coded text on the image with
-     *    the text being saved to state.
+     * ✅ As soon as the Meme component loads the first time,
+     * make an API call to "https://api.imgflip.com/get_memes".
+     * 
+     * ✅ When the data comes in, save just the memes array part
+     * of that data to the `allMemes` state
+     * 
+     * ✅ Think about if there are any dependencies that, if they
+     * changed, you'd want to cause to re-run this function.
+     * (I don't there are any, unless you want a complete set of new memes)
+     * 
+     * Hint: for now, don't try to use an async/await function.
+     * Instead, use `.then()` blocks to resolve the promises
+     * from using `fetch`. We'll learn why after this challenge.
      */
 
     
     function handleSubmit(e) {
         e.preventDefault()
-        const dataArray = allMemeImages.data.memes;
-        const randomMemeNumber = Math.floor( Math.random() * dataArray.length);
+        const randomMemeNumber = Math.floor( Math.random() * allMemes.length);
         setMemeImage(prevDate => {
             return {
-                ...prevDate, randomImage: allMemeImages.data.memes[randomMemeNumber].url
+                ...prevDate, randomImage: allMemes[randomMemeNumber].url
             }
         })
     }
@@ -29,10 +37,17 @@ export default function MemeForm() {
         randomImage: 'http://i.imgflip.com/1bij.jpg'
     })
 
-    const [allMemeImages, allMemeImagesState] = React.useState(memesData)
+    const [allMemes, setAllMemes] = React.useState([])
+
+    React.useEffect( () => {
+        console.log('React useEffect Ran')
+        fetch('https://api.imgflip.com/get_memes')
+            .then( (response) => response.json())
+            .then( (data) => setAllMemes(data.data.memes))
+    },[])
+
 
     function handleChange(e) {
-        console.log(memeImage)
         const {name, value} = e.target
         setMemeImage(prevData => {
             return {...prevData, [name]: value}
